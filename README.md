@@ -24,5 +24,5 @@ There are 3 types of tabs for a node in botpress worflow
 2. `onReceive` - for Prompt and Response nodes
 3. `Transitions` :
     - based on 'quick reply values' (used in 2nd point) which node to go next.
-    - If we want trasition based on a value then put that value ONLY in 'Raw Expression (advanced) ' field
-    - If we want trasition no matter what user gives input then select 'Always'
+    - If we want trasition based on a value then put that value ONLY in `Raw Expression (advanced)` field
+    - If we want trasition no matter what user gives input then select `Always`
