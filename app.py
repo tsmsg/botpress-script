@@ -17,12 +17,13 @@ botpress_bot_id = raw_input("Enter your BotID (of botpress) : ").strip()
 
 bot_dir = '../data/bots/'+botpress_bot_id
 if os.path.isdir(bot_dir) is False:
-  sys.exit("\nError: BotID '" + botpress_bot_id + "' not found in BotPress, please enter exact BotID!\n")
+  sys.exit("\nError: BotID '" + botpress_bot_id + "' not found in BotPress, please enter correct & exact BotID!\n")
 
 content_dir = bot_dir + '/content-elements/'
 
 ##################################################################################
 
+print("\nGenerating JSON for AI Studio...")
 # create map of all data nodes of all types (card, text, quick reply)
 elements_map = {}
 
@@ -303,6 +304,6 @@ for node in flow_json['nodes']:
 ##################################################################################
 
 #print output json
-print("\nGenerating JSON for AI Studio...")
-print('\n\n  **************************** | JSON Output | **************************** \n\n')
+print("Successfully generated JSON for AI Studio!")
+print('\n\n**************************** | JSON Output | ****************************\n\n')
 print(json.dumps(skeleton_json, ensure_ascii=False))
