@@ -1,0 +1,51 @@
+{
+  "label": "HUMAN_HANDOFF_NODE",
+  "name": "HUMAN_HANDOFF_NODE",
+  "workflowNodeType": "NORMAL",
+  "workflowActionType": "HUMAN_HAND_OFF",
+  "response": {
+    "type": "ai.msg.domain.workflow.HumanHandoffAction",
+    "standardActionResponse": {
+      "type": "ai.msg.domain.workflow.StandardActionResponse",
+      "contextResponses": [
+        {
+          "targetingRule": {
+            "expression": "true",
+            "groupId": "IID",
+            "isDefault": false,
+            "ruleExpressionAttributesList": null,
+            "expectedAttributes": []
+          },
+          "priority": 0,
+          "experimentTargetEnabled": true,
+          "responses": [],
+          "localeResponsesMap": {
+            "default": [
+              {
+                "isTemplateResponse": true,
+                "responseUnits": [
+                  {
+                    "bucketId": "DEFAULT",
+                    "attachments": [
+                      {
+                        "type": "ai.msg.domain.responses.core.Text",
+                        "text": "Thank you, I will connect you to agent now, please hold on.",
+                        "timestamp": 0
+                      }
+                    ],
+                    "messengerTemplates": []
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "isTargetingEnabled": true
+    },
+    "groupId": "c2bfd40f-65fc-47e5-b822-04e041fcc1f7",
+    "escalationReason": "Connect me to human agent",
+    "handOffType": "ZENDESK_CHAT"
+  },
+  "level": "TERMINATE"
+}

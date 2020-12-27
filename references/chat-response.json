@@ -1,0 +1,33 @@
+{
+  "label": "THANKS_RESPONSE",
+  "name": "THANKS_RESPONSE",
+  "workflowNodeType": "NORMAL",
+  "workflowActionType": "RESPONSE",
+  "response": {
+    "type": "ai.msg.domain.workflow.StandardActionResponse",
+    "contextResponses": [
+      {
+        "priority": 0,
+        "experimentTargetEnabled": true,
+        "responses": [],
+        "localeResponsesMap": {
+          "default": [
+            {
+              "isTemplateResponse": true,
+              "responseUnits": [
+                {
+                  "bucketId": "DEFAULT",
+                  "attachments": [
+                  ],
+                  "messengerTemplates": []
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "isTargetingEnabled": false
+  },
+  "level": "TERMINATE"
+}

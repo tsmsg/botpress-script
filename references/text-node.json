@@ -1,0 +1,5 @@
+{
+  "type": "ai.msg.domain.responses.core.Text",
+  "text": "text data",
+  "timestamp": 0
+}

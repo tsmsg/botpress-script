@@ -1,0 +1,67 @@
+{
+  "type": "ai.msg.domain.workflow.WorkflowMetaDataInfo",
+  "name": "intent.key",
+  "version": "1.0",
+  "nodes": [
+  ],
+  "transitions": [
+  ],
+  "flowEntityMap": {
+    "INTENT_TYPE": {
+      "id": "INTENT_TYPE",
+      "botId": "7cf8101c-fd42-4196-98e1-2fe0a4b2edae",
+      "derivedEntity": false,
+      "env": "SANDBOX",
+      "dsEntity": false,
+      "translationEnabled": true,
+      "type": "COMPLEX_OBJECT",
+      "version": "1",
+      "name": "INTENT_TYPE",
+      "startIndex": 0,
+      "endIndex": 0,
+      "className": "msgai.en.intent.type",
+      "value": "",
+      "synonyms": [],
+      "formattedValues": [
+        {
+          "type": "Text",
+          "name": "value",
+          "scope": "SESSION"
+        }
+      ],
+      "label": "INTENT_TYPE",
+      "scope": "BOTH",
+      "channel": "ZENDESK_CHAT",
+      "category": "ENTITY",
+      "description": "INTENT_TYPE"
+    },
+    "EMAIL_ID": {
+      "id": "EMAIL_ID",
+      "botId": "7cf8101c-fd42-4196-98e1-2fe0a4b2edae",
+      "derivedEntity": false,
+      "env": "SANDBOX",
+      "dsEntity": true,
+      "translationEnabled": true,
+      "type": "COMPLEX_OBJECT",
+      "version": "1",
+      "name": "EMAIL_ID",
+      "startIndex": 0,
+      "endIndex": 0,
+      "className": "msgai.en.email",
+      "value": "",
+      "synonyms": [],
+      "formattedValues": [
+        {
+          "type": "Text",
+          "name": "value",
+          "scope": "SESSION"
+        }
+      ],
+      "label": "EMAIL_ID",
+      "scope": "BOTH",
+      "channel": "ZENDESK_CHAT",
+      "category": "ENTITY",
+      "description": "EMAIL_ID"
+    }
+  }
+}

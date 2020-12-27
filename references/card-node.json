@@ -1,0 +1,7 @@
+{
+  "type": "ai.msg.domain.responses.core.Card",
+  "buttons": [
+  ],
+  "text": "text",
+  "timestamp": 0
+}

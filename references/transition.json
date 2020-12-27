@@ -1,0 +1,20 @@
+{
+  "sourceNodeId": "ORIGIN_DECISION_NODE",
+  "targetNodeId": "BILL_TYPE_PROMPT",
+  "guardMetaData": {
+    "guardName": "GUARD_NAME",
+    "priority": 1,
+    "guardType": "RULE_EXPRESSION",
+    "rule": {
+      "expression": "",
+      "groupId": null,
+      "isDefault": false,
+      "ruleExpressionAttributesList": null,
+      "expectedAttributes": [
+        {
+          "name": "VISITOR_ORIGIN"
+        }
+      ]
+    }
+  }
+}

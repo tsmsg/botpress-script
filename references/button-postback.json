@@ -1,0 +1,6 @@
+{
+  "type": "POST_BACK",
+  "title": "Chat with a person",
+  "payload": "Chat with a person",
+  "messenger_extensions": false
+}

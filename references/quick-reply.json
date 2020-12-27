@@ -1,0 +1,11 @@
+{
+  "type": "ai.msg.domain.responses.core.Text",
+  "text": "I hope this resolves your issue. Please let me know if I can assist you further.",
+  "quickReply": {
+    "description": "QuickReply",
+    "type": "text",
+    "options": [
+    ]
+  },
+  "timestamp": 0
+}

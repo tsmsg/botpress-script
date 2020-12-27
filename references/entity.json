@@ -1,0 +1,30 @@
+{
+  "ORDER_ID": {
+    "id": "ORDER_ID",
+    "botId": "2b63f662-2ef5-41d8-85a7-b3ad9c4e6940",
+    "derivedEntity": false,
+    "env": "SANDBOX",
+    "dsEntity": false,
+    "translationEnabled": true,
+    "type": "COMPLEX_OBJECT",
+    "version": "1",
+    "name": "ORDER_ID",
+    "startIndex": 0,
+    "endIndex": 0,
+    "className": "ORDER_ID",
+    "value": "",
+    "synonyms": [],
+    "formattedValues": [
+      {
+        "type": "Text",
+        "name": "value",
+        "scope": "SESSION"
+      }
+    ],
+    "label": "ORDER_ID",
+    "scope": "BOTH",
+    "channel": "ZENDESK_CHAT",
+    "category": "ENTITY",
+    "description": "ORDER_ID"
+  }
+}

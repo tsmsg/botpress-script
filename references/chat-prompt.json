@@ -1,0 +1,72 @@
+{
+  "label": "WELCOME_PROMPT",
+  "name": "WELCOME_PROMPT",
+  "workflowNodeType": "NORMAL",
+  "workflowActionType": "PROMPT",
+  "response": {
+    "type": "ai.msg.domain.workflow.Prompt",
+    "label": "WELCOME_PROMPT",
+    "name": "WELCOME_PROMPT",
+    "entities": [
+      {
+        "name": "USER_TYPE"
+      }
+    ],
+    "scope": "BOT",
+    "version": 1,
+    "maxAttempt": 3,
+    "response": {
+      "type": "ai.msg.domain.workflow.StandardActionResponse",
+      "contextResponses": [
+        {
+          "priority": 0,
+          "experimentTargetEnabled": true,
+          "responses": [],
+          "localeResponsesMap": {
+            "default": [
+              {
+                "isTemplateResponse": false,
+                "responseUnits": [
+                  {
+                    "bucketId": "DEFAULT",
+                    "attachments": [
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "isTargetingEnabled": false
+    },
+    "retryAction": {
+      "type": "ai.msg.domain.workflow.StandardActionResponse",
+      "contextResponses": [
+        {
+          "priority": 0,
+          "experimentTargetEnabled": true,
+          "responses": [],
+          "localeResponsesMap": {
+            "default": [
+              {
+                "isTemplateResponse": false,
+                "responseUnits": [
+                  {
+                    "bucketId": "DEFAULT",
+                    "attachments": [
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "isTargetingEnabled": false
+    },
+    "scopeDurability": "SESSION",
+    "totalRetry": 1
+  },
+  "level": "INTERMEDIATE"
+}
