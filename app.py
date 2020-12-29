@@ -296,13 +296,13 @@ def create_transition(start_node_name, entity_name, target_node_name, condition_
   transition_node['targetNodeId'] = target_node_name.upper()
   entity_value = entity_name + "_value"
   
-  if condition_value == 'affirm':
+  if condition_value.lower() == 'affirm':
     transition_node['guardMetaData']['rule']['expression'] = "INTENT_TYPE_value!=null && INTENT_TYPE_value.equalsIgnoreCase('msgai.conversational.affirm')"
     entity_name = 'INTENT_TYPE'
-  elif condition_value == 'decline':
+  elif condition_value.lower() == 'decline':
     transition_node['guardMetaData']['rule']['expression'] = "INTENT_TYPE_value!=null && INTENT_TYPE_value.equalsIgnoreCase('msgai.conversational.decline')"
     entity_name = 'INTENT_TYPE'
-  elif condition_value == 'true':
+  elif condition_value.lower() == 'true':
     transition_node['guardMetaData']['rule']['expression'] = entity_value + " != null"
   else:
     transition_node['guardMetaData']['rule']['expression'] = entity_value + " != null && " + entity_value + ".equalsIgnoreCase('" + condition_value + "')"
