@@ -130,9 +130,9 @@ def create_options(actions):
   options = []
   for action in actions:
     qreply_option_node = qreply_option_node_json
-    qreply_option_node['label'] = action['label']
-    qreply_option_node['description'] = action['label']
-    qreply_option_node['metadata'] = action['value']
+    qreply_option_node['label'] = action['label'].strip()
+    qreply_option_node['description'] = action['label'].strip()
+    qreply_option_node['metadata'] = action['value'].strip()
     options.append(copy.deepcopy(qreply_option_node))
   
   return options
@@ -148,20 +148,20 @@ def create_buttons(actions):
   for action in actions:
     if action['action'] == 'Postback':
       button_postback_node = button_postback_node_json
-      button_postback_node['title'] = action['title']
-      button_postback_node['payload'] = action['payload']
+      button_postback_node['title'] = action['title'].strip()
+      button_postback_node['payload'] = action['payload'].strip()
       buttons.append(copy.deepcopy(button_postback_node))
     elif action['action'] == 'Open URL':
       button_url_node = button_url_node_json
-      button_url_node['title'] = action['title']
-      button_url_node['url'] = action['url']
+      button_url_node['title'] = action['title'].strip()
+      button_url_node['url'] = action['url'].strip()
       buttons.append(copy.deepcopy(button_url_node))
     
   return buttons
 
 def create_card(data):
   card_node = card_node_json
-  card_node['text'] = data['title$en']
+  card_node['text'] = data['title$en'].strip()
   card_node['buttons'] = create_buttons(data['actions$en'])
   return card_node
 
@@ -276,7 +276,7 @@ def append_entity_node(entity_node, entity_name):
 
 # process tranistions main flow
 for node in flow_json['nodes']:
-  node['name'] = node['name'].upper()
+  node['name'] = node['name'].strip().upper()
   entity_name = node['name']+ '_ENTITY'
 
   #create data node
@@ -298,7 +298,7 @@ for node in flow_json['nodes']:
 
   #create transition node
   for next_node in node['next']:
-    append_transition_node(create_transition(node['name'], entity_name, next_node['node'], next_node['condition']))
+    append_transition_node(create_transition(node['name'].strip(), entity_name, next_node['node'].strip(), next_node['condition'].strip()))
 
 
 ##################################################################################
