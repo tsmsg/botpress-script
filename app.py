@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""app.py: JSON Generator script for AI Studio using open-source BotPress studio."""
+"""app.py: Workflow JSON Generator script for AI Studio using open-source BotPress."""
 __author__      = "Tushar Soni"
 __email__ = "tushar@netomi.com"
 
@@ -9,11 +9,21 @@ from collections import OrderedDict
 from pprint import pprint
 
 
+def is_valid(info):
+  if not info:
+    sys.exit("Oops! Incomplete information.")
+  else:
+    return info.strip()
 
 # bot info
-intent_key = raw_input("Enter your Intent Key (of netomi) : ").strip()
-netomi_bot_id = raw_input("Enter your BotID (of netomi) : ").strip()
-botpress_bot_id = raw_input("Enter your BotID (of botpress) : ").strip()
+intent_key = raw_input("Enter your Intent Key (of netomi) : ")
+intent_key = is_valid(intent_key)
+
+netomi_bot_id = raw_input("Enter your BotID (of netomi) : ")
+netomi_bot_id = is_valid(netomi_bot_id)
+
+botpress_bot_id = raw_input("Enter your BotID (of botpress) : ")
+botpress_bot_id = is_valid(botpress_bot_id)
 
 bot_dir = '../data/bots/'+botpress_bot_id
 if os.path.isdir(bot_dir) is False:
@@ -61,6 +71,17 @@ try:
 except:
   pass
 
+# read carousel json and put nodes in elements_map
+try:
+  carousel_file_name = content_dir + 'builtin_carousel.json'
+  with open(carousel_file_name) as carousel_file:
+    carousel_json = json.load(carousel_file, object_pairs_hook=OrderedDict)
+
+  for node in carousel_json:
+    elements_map[node['id']] = node
+except:
+  pass
+
 # read tranition flow json
 flow_file_name = bot_dir + '/flows/main.flow.json'
 with open(flow_file_name) as flow_file:
@@ -69,6 +90,14 @@ with open(flow_file_name) as flow_file:
 ##################################################################################
 
 #read netomi reference jsons
+
+#read carousel elements node json
+carousel_elements_node_file = open('references/carousel-elements.json')
+carousel_elements_node_json = json.load(carousel_elements_node_file, object_pairs_hook=OrderedDict)
+
+#read carousel node json
+carousel_node_file = open('references/carousel.json')
+carousel_node_json = json.load(carousel_node_file, object_pairs_hook=OrderedDict)
 
 #read quick reply option node json
 qreply_option_node_file = open('references/qreply-option.json')
@@ -170,6 +199,22 @@ def create_text(text_data):
   text_node['text'] = text_data
   return text_node
 
+def create_elements(items):
+  elements = []
+  for item in items:
+    carousel_elements_node = carousel_elements_node_json
+    carousel_elements_node['title'] = item['title']
+    carousel_elements_node['imageUrl'] = item['subtitle']
+    carousel_elements_node['buttons'] = create_buttons(item['actions'])
+    elements.append(copy.deepcopy(carousel_elements_node))
+
+  return elements
+
+def create_carousel(items):
+  carousel_node = carousel_node_json
+  carousel_node['elements'] = create_elements(items)
+  return carousel_node
+
 def create_attachements(content_ids):
   attachments = []
   for data_id in content_ids:
@@ -184,6 +229,9 @@ def create_attachements(content_ids):
     elif data_id.find('dropdown') != -1:  # quickreply
       quick_reply_node = create_quick_reply(elements_map[data_id]['formData'])
       attachments.append(copy.deepcopy(quick_reply_node))
+    elif data_id.find('carousel') != -1:
+      carousel_node = create_carousel(elements_map[data_id]['formData']['items$en'])
+      attachments.append(copy.deepcopy(carousel_node))
     else:
       print('Invalid attachment for id: ' + data_id)
   
@@ -247,11 +295,20 @@ def create_transition(start_node_name, entity_name, target_node_name, condition_
   transition_node['sourceNodeId'] = start_node_name.upper()
   transition_node['targetNodeId'] = target_node_name.upper()
   entity_value = entity_name + "_value"
-  if condition_value == 'true':
+  
+  if condition_value == 'affirm':
+    transition_node['guardMetaData']['rule']['expression'] = "INTENT_TYPE_value!=null && INTENT_TYPE_value.equalsIgnoreCase('msgai.conversational.affirm')"
+    entity_name = 'INTENT_TYPE'
+  elif condition_value == 'decline':
+    transition_node['guardMetaData']['rule']['expression'] = "INTENT_TYPE_value!=null && INTENT_TYPE_value.equalsIgnoreCase('msgai.conversational.decline')"
+    entity_name = 'INTENT_TYPE'
+  elif condition_value == 'true':
     transition_node['guardMetaData']['rule']['expression'] = entity_value + " != null"
   else:
     transition_node['guardMetaData']['rule']['expression'] = entity_value + " != null && " + entity_value + ".equalsIgnoreCase('" + condition_value + "')"
+
   transition_node['guardMetaData']['rule']['expectedAttributes'][0]['name'] = entity_name
+  
   return transition_node
 
 def append_transition_node(transition_node):

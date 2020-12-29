@@ -1,0 +1,7 @@
+{
+  "type": "ai.msg.domain.responses.core.Carousel",
+  "timestamp": 0,
+  "elements": [
+  ],
+  "carouselImageAspectRatio": "HORIZONTAL"
+}
